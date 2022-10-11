@@ -1,0 +1,403 @@
+@font-face {
+  font-family: "GT America";
+  font-style: normal;
+  font-weight: normal;
+  src: local("GT America"), url("font/GT-America-LCGV-Standard-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "GT America";
+  font-style: normal;
+  font-weight: 100;
+  src: local("GT America"), url("font/GT-America-LCGV-Standard-Light.woff2") format("woff2");
+}
+@font-face {
+  font-family: "GT America";
+  font-style: italic;
+  font-weight: normal;
+  src: local("GT America"), url("font/GT-America-LCGV-Standard-Regular-Italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "GT America";
+  font-style: italic;
+  font-weight: 100;
+  src: local("GT America"), url("font/GT-America-LCGV-Standard-Light-Italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "GT America";
+  font-style: normal;
+  font-weight: 700;
+  src: local("GT America"), url("font/GT-America-LCGV-Standard-Bold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Input";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Input"), url("font/InputMonoNarrow-Light_TRIAL.woff2") format("woff2");
+}
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "GT America", sans-serif;
+  width: 100vw;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  color: rgb(34, 7, 49);
+  background-color: #ffffff;
+}
+body .roman {
+  font-variant: small-caps;
+}
+body sup {
+  vertical-align: text-top;
+  font-size: 70%;
+  line-height: 80%;
+}
+body .titre {
+  text-decoration: underline;
+}
+body .anglais {
+  font-style: italic;
+}
+body #mask {
+  z-index: 1;
+  position: absolute;
+  left: -5vw;
+}
+body #mask div {
+  z-index: 2;
+  position: absolute;
+  width: 15vw;
+  height: 50vh;
+  cursor: pointer;
+  top: 25vh;
+  box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.4);
+}
+body #mask #click_to_enter_1, body #mask #first_screen {
+  left: 18.75vw;
+}
+body #mask #click_to_enter_2, body #mask #second_screen {
+  left: 47.55vw;
+}
+body #mask #click_to_enter_3, body #mask #third_screen {
+  left: 76.25vw;
+}
+body #mask p {
+  position: absolute;
+  top: 77vh;
+  max-width: 13.8vw;
+  font-size: 1.8vh;
+  font-weight: 100;
+  color: #ffffff;
+  text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.4);
+}
+body #grid {
+  display: none;
+  opacity: 0.4;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  border: solid 1px black;
+}
+body main #fixed-side-left, body main #fixed-side-right {
+  position: fixed;
+  font-size: 1.8vh;
+  font-weight: 100;
+}
+body main #fixed-side-left #left-border-bloc {
+  z-index: 1;
+  position: absolute;
+  background-color: #ffffff;
+  border-bottom: solid 1px rgb(34, 7, 49);
+  transition: width 0.7s ease-out;
+}
+body main #fixed-side-left #sommaire-close {
+  position: absolute;
+  font-size: 1.4vh;
+  overflow: hidden;
+  z-index: 2;
+}
+body main #fixed-side-left #sommaire-close p {
+  transform: translateY(20px);
+  transition: transform 0.2s ease-out;
+  cursor: pointer;
+}
+body main #fixed-side-left #sommaire-button {
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+  width: 100%;
+  background-color: #ffffff;
+}
+body main #fixed-side-left #sous-titre-fixe {
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  z-index: 0;
+  font-family: "Input";
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom: solid 1px rgb(34, 7, 49);
+  transition: transform 0.8s ease-out, height 0.2s ease-out, opacity 0.2s ease-out;
+}
+body main #fixed-side-left #sous-titre-fixe p {
+  transform: translateY(0px);
+  opacity: 0;
+  transition: transform 0.4s ease-out, opacity 0.2s ease-out;
+}
+body main #fixed-side-left #sous-titre-fixe ul li {
+  cursor: pointer;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  opacity: 0;
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 0, 0, 0);
+  text-underline-offset: 3px;
+  transition: opacity 1s ease-out, text-decoration-color 0.2s ease-out;
+}
+body main #fixed-side-left #sous-titre-fixe ul li:first-of-type {
+  margin-top: 0px;
+}
+body main #fixed-side-left #sous-titre-fixe ul li:last-of-type {
+  margin-bottom: 0px;
+}
+body main #fixed-side-left img {
+  position: fixed;
+  width: auto;
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+}
+body main #fixed-side-right {
+  z-index: -1;
+}
+body main #fixed-side-right p {
+  position: absolute;
+}
+body main #fixed-side-right #vertical-intro-text {
+  z-index: 0;
+  transform-origin: top left;
+  transform: rotate(90deg);
+  white-space: nowrap;
+}
+body main #fixed-side-right #right-border-bloc {
+  z-index: 0;
+  position: absolute;
+  border-top: solid 1px rgb(34, 7, 49);
+  border-right: solid 1px rgb(34, 7, 49);
+  transition: opacity 0.3s ease-out;
+  pointer-events: none;
+}
+body main #scrollable-side-left {
+  z-index: -1;
+}
+body main #scrollable-side-left .caption {
+  display: block;
+  background-color: #ffffff;
+  position: absolute;
+  opacity: 0;
+  overflow: hidden;
+  transition: opacity 1.4s ease-out, width 0.8s ease-out, top 0.4s ease-out;
+  width: 0%;
+  font-weight: 100;
+  line-height: 1.4;
+  border-top: solid 1px rgb(34, 7, 49);
+}
+body main #scrollable-side-left .caption p {
+  white-space: nowrap;
+  padding-top: 0.6vh;
+  padding-bottom: 0.6vh;
+  text-align: right;
+  border-bottom: solid 1px rgb(34, 7, 49);
+  font-size: 1.8vh;
+}
+body main #scrollable-side-left .caption .title {
+  font-weight: normal;
+}
+body main #scrollable-side-left .caption .details {
+  border-bottom: solid 1px rgb(34, 7, 49);
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+body main #scrollable-side-left .caption .details p {
+  font-size: 1.4vh;
+  white-space: nowrap;
+  border: none;
+  padding: 0;
+}
+body main #scrollable-side-left .paragraph-number {
+  position: absolute;
+  font-family: "Input";
+  overflow: hidden;
+  right: 0;
+  z-index: -2;
+}
+body main #scrollable-side-left .paragraph-number p {
+  font-size: 1.8vh;
+  transform: translateY(30px);
+  transition: transform 0.4s ease-out;
+}
+body main #scrollable-side-left .img-position {
+  position: absolute;
+  font-weight: 100;
+  font-style: italic;
+  font-size: 1.4vh;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+body main #scrollable-side-left .img-position p {
+  transform: translateY(40px);
+  transition: transform 0.3s ease-out;
+}
+body main #scrollable-side-right {
+  display: none;
+  z-index: -1;
+}
+body main #scrollable-side-right .annotation {
+  position: absolute;
+  font-weight: 100;
+  font-size: 1.4vh;
+  line-height: 1.4;
+  background-color: #ffffff;
+}
+body main #scrollable-side-right .annotation p:first-of-type {
+  border-top: solid 1px rgb(34, 7, 49);
+  padding-top: 0.6vh;
+  font-weight: normal;
+  font-size: 1.8vh;
+}
+body main #scrollable-side-right .annotation p:nth-of-type(2) {
+  font-size: 1.8vh;
+  border-bottom: solid 1px rgb(34, 7, 49);
+  padding-bottom: 0.6vh;
+}
+body main #scrollable-side-right .annotation p:nth-of-type(3) {
+  padding: 0.6vh 0 0.6vh 0;
+  border-bottom: solid 1px rgb(34, 7, 49);
+}
+body main #scrollable-side-right .annotation p {
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+}
+body main #scrollable-side-right .annotation a {
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+  color: rgb(34, 7, 49);
+  width: 100%;
+  display: block;
+  padding-top: 0.6vh;
+  padding-bottom: 1vh;
+  border-bottom: solid 1px rgb(34, 7, 49);
+}
+body main #scrollable-side-right .annotation a span {
+  display: inline-block;
+  text-decoration: none;
+  margin-left: 5px;
+}
+body main #main-content {
+  position: absolute;
+  width: 100vw;
+  left: 0;
+  transition: width 0.4s ease-out, left 0.4s ease-out;
+}
+body main #main-content #main-title {
+  z-index: 0;
+  width: inherit;
+  height: 100vh;
+  max-height: 110vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 8vh;
+  line-height: 0.8em;
+  text-align: center;
+  transition: max-height 1.4s ease-out, transform 0.4s ease-out;
+  font-family: "Input";
+}
+body main #main-content #main-title p {
+  width: 75%;
+  transition: padding-top 0.2s ease-out, margin-bottom 0.2s ease-out, margin-left 1.4s ease-out;
+}
+body main #main-content #main-title p:first-of-type {
+  text-align: left;
+}
+body main #main-content #main-title p:last-of-type {
+  text-align: right;
+}
+body main #main-content #content-hidden {
+  display: none;
+}
+body main #main-content #content-hidden #separator {
+  margin: 5vh 0 8vh 0;
+  height: 1px;
+  border-top: solid 1px rgb(34, 7, 49);
+  width: 0%;
+  transition: width 0.7s ease-out;
+}
+body main #main-content #content-hidden img {
+  width: 100%;
+  margin-bottom: 5vh;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+body main #main-content #content-hidden p {
+  font-size: 2.5vh;
+  text-align: justify;
+  line-height: 1.4;
+  margin-bottom: 5vh;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+body main #main-content #content-hidden h2 {
+  font-weight: normal;
+  font-family: "Input";
+  font-size: 3.6vh;
+  margin-bottom: 4vh;
+}
+body main #main-content #content-hidden .double-img {
+  z-index: 1;
+}
+body main #main-content #content-hidden .double-img img {
+  object-fit: cover;
+}
+body main #main-content #content-hidden .double-img img:last-of-type {
+  z-index: 1;
+  position: absolute;
+}
+body main #main-content #content-hidden #bibliographie h3 {
+  font-size: 2.5vh;
+  font-family: "Input";
+}
+body main #main-content #content-hidden #bibliographie h3:first-of-type {
+  margin-top: -20px;
+}
+body main #main-content #content-hidden #bibliographie ul {
+  list-style: none;
+}
+body main #main-content #content-hidden #bibliographie ul li {
+  font-size: 1.4vh;
+  margin: 10px 0 10px 0;
+}
+body main #main-content #content-hidden #bibliographie ul:last-of-type {
+  margin-bottom: 40px;
+}
+body main #main-content #content-hidden #remerciements ul {
+  list-style: none;
+  margin-top: -20px;
+  margin-bottom: 50px;
+}
+body main #main-content #content-hidden #remerciements ul li {
+  font-size: 1.4vh;
+}
+body main #main-content #content-hidden #remerciements ul li:last-of-type {
+  margin-top: 20px;
+}
+
+/*# sourceMappingURL=style.css.map */
